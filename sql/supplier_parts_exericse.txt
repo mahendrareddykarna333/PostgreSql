@@ -1,0 +1,102 @@
+Suppliers:
+Each supplier has one supplier number (SNO), unique to that supplier (as you can see from the figure,
+I’ve made {SNO} the primary key);
+one name (SNAME), not necessarily unique (though the SNAME values in Fig. 1.3 do happen to be unique);
+one status value (STATUS), representing some kind of ranking or preference level among available
+suppliers; and one location (CITY).
+
+
+SNO  SNAME  STATUS   CITY
+----------------------------
+S1  Smith  20       London
+S2  Jones  10       Paris
+S3  Blake  30       Paris
+S4  Clark  20       London
+S5  Adams  30       Athens
+
+
+Parts
+Each kind of part has one part number (PNO),
+which is unique ({PNO} is the primary key); one name (PNAME); one color (COLOR); one weight
+(WEIGHT); and one location where parts of that kind are stored (CITY).
+
+
+PNO  PNAME  COLOR  WEIGHT   CITY
+----------------------------------
+P1  Nut    Red    12.0    London
+P2  Bolt   Green  17.0    Paris
+P3  Screw  Blue   17.0    Oslo
+P4  Screw  Red    14.0    London
+P5  Cam    Blue   12.0    Paris
+P6  Cog    Red    19.0    London
+
+Shipments
+Relation Shipments denotes shipments (it shows which parts are supplied, or shipped, by which suppliers). Each
+shipment has one supplier number (SNO), one part number (PNO), and one quantity (QTY). For the sake of
+the example, I assume there’s at most one shipment at any given time for a given supplier and a given part
+({SNO,PNO} is the primary key; also, {SNO} and {PNO} are both foreign keys, corresponding to the
+primary keys of S and P, respectively). Notice that the database of Fig. 1.3 includes one supplier, supplier
+S5, with no shipments at all.
+
+S#  P#  QTY
+------------
+S1  P1  300
+S1  P2  200
+S1  P3  400
+S1  P4  200
+S1  P5  100
+S1  P6  100
+S2  P1  300
+S2  P2  400
+S3  P2  200
+S4  P2  200
+S4  P4  300
+S4  P5  400
+
+
+
+
+1.13 Write CREATE TABLE statements for an SQL version of the suppliers-and-parts database.
+1.14 Write SQL INSERT statement against the suppliers-and-parts database:
+
+6.9
+a. Get all shipments.
+b. Get supplier numbers for suppliers who supply part P1.
+c. Get suppliers with status in the range 15 to 25 inclusive.
+d. Get part numbers for parts supplied by a supplier in London.
+e. Get part numbers for parts not supplied by any supplier in London.
+f. Get all pairs of part numbers such that some supplier supplies both of the indicated parts.
+g. Get supplier numbers for suppliers with a status lower than that of supplier S1.
+h. Get part numbers for parts supplied by all suppliers in London.
+i. Get (SNO,PNO) pairs such that the indicated supplier does not supply the indicated part.
+j. Get suppliers who supply at least all parts supplied by supplier S2.
+
+
+7.9 Write Tutorial D and/or SQL expressions for the following queries on the suppliers-and-parts database:
+a. Get the total number of parts supplied by supplier S1.
+b. Get supplier numbers for suppliers whose city is first in the alphabetic list of such cities.
+c. Get city names for cities in which at least two suppliers are located.
+d. Get city names for cities in which at least one supplier or at least one part is located, but not both.
+e. Get part numbers for parts supplied by all suppliers in London.
+f. Get suppliers who supply at least all parts supplied by supplier S2
+
+
+Write the following constraints:
+8.21 Using Tutorial D and/or SQL, write constraints for the suppliers-and-parts database to express the following
+requirements:
+a. All red parts must weigh less than 50 pounds.
+b. Every London supplier must supply part P2.
+c. No two suppliers can be located in the same city.
+d. At most one supplier can be located in Athens at any one time.
+e. There must be at least one London supplier.
+f. At least one red part must weigh less than 50 pounds.
+g. The average supplier status must be at least 10.
+h. No shipment can have a quantity more than double the average of all such quantities.
+i. No supplier with maximum status can be located in the same city as any supplier with minimum status.
+j. Every part must be located in a city in which there is at least one supplier.
+k. Every part must be located in a city in which there is at least one supplier of that part.
+l. Suppliers in London must supply more different kinds of parts than suppliers in Paris.
+m. The total quantity of parts supplied by suppliers in London must be greater than the corresponding total for
+suppliers in Paris.
+n. No shipment can have a total weight (part weight times shipment quantity) greater than 20,000 pounds.
+In each case, state which operations might cause the constraint to be violated.
